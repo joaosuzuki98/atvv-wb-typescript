@@ -3,6 +3,7 @@ import { Button, Modal, Form, Input, Select } from "antd";
 import TableComponent from "../components/Table/Table";
 import Template from "./Template";
 import api from "../services/api";
+import dayjs from "dayjs";
 
 const { Option } = Select;
 
@@ -66,7 +67,13 @@ const Clientes: React.FC = () => {
         { title: "Nome Social", dataIndex: "nomeSocial", key: "nomeSocial" },
         { title: "CPF", dataIndex: "cpf", key: "cpf" },
         { title: "Gênero", dataIndex: "genero", key: "genero" },
-        { title: "Data de Emissão do CPF", dataIndex: "dataEmissaoCPF", key: "dataEmissaoCPF" },
+        {
+            title: "Data de Emissão do CPF",
+            dataIndex: "dataEmissaoCPF",
+            key: "dataEmissaoCPF",
+            render: (text: string) =>
+                dayjs(text).format("DD/MM/YYYY [às] HH:mm:ss"),
+        },
     ];
 
     const modalFields = [
